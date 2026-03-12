@@ -1,31 +1,67 @@
-function loadFlip(){
+let choice = null
+let bet = 0
 
-let area=document.getElementById("gameArea")
+const coin = document.getElementById("coin")
+const resultText = document.getElementById("result")
+const betInput = document.getElementById("bet")
 
-area.innerHTML=`
+function choose(side){
 
-<h2>Cow Flip</h2>
+choice = side
 
-<div id="coin">🐮</div>
+if(side === "cow"){
+resultText.innerText = "Вы выбрали Бурёнку 🐄"
+}
 
-<button onclick="flipCoin()">Flip</button>
-
-`
+if(side === "normal"){
+resultText.innerText = "Вы выбрали обычную 🪙"
+}
 
 }
 
+
 function flipCoin(){
 
-let coin=document.getElementById("coin")
+bet = Number(betInput.value)
 
-coin.style.transform="rotateY(720deg)"
+if(!choice){
+alert("Выберите сторону")
+return
+}
+
+if(bet <= 0){
+alert("Введите ставку")
+return
+}
+
+coin.classList.add("flip")
 
 setTimeout(()=>{
 
-let result=Math.random()<0.5
+coin.classList.remove("flip")
 
-coin.innerText=result?"😎":"🐄"
+let result = Math.random() < 0.5 ? "cow" : "normal"
 
-},600)
+if(result === "cow"){
+coin.innerText = "🐄"
+}else{
+coin.innerText = "🪙"
+}
+
+if(result === choice){
+
+let win = bet * 2
+
+resultText.innerText =
+"Вы выиграли " + win + " BUR 🎉"
+
+}else{
+
+resultText.innerText =
+"Вы проиграли " + bet + " BUR"
+
+}
+
+},2000)
 
 }
