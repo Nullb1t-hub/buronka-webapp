@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +8,10 @@
 </head>
 <body>
 
-<!-- Фоновая анимация монет -->
+<!-- Background animation -->
 <div class="background-coins"></div>
 
-<!-- Верхняя панель -->
+<!-- Top bar -->
 <header class="topbar">
     <div class="logo">
         <div class="logo-title">BURONKA</div>
@@ -19,20 +19,20 @@
     </div>
     <div class="right-menu">
         <button id="connectBtn">Connect</button>
-        <button id="depositBtn">Пополнение</button>
+        <button id="depositBtn">Deposit</button>
     </div>
 </header>
 
-<!-- Панель промокода и баланса -->
+<!-- Promo code and balance -->
 <div class="promo-bar">
-    <input id="promoInput" placeholder="Введите промокод">
-    <button id="promoBtn">Активировать</button>
+    <input id="promoInput" placeholder="Enter promo code">
+    <button id="promoBtn">Activate</button>
     <div class="balance">
-        Баланс: <span id="balance">0</span> BUR
+        Balance: <span id="balance">0</span> BUR
     </div>
 </div>
 
-<!-- Сетка игр -->
+<!-- Games grid -->
 <main class="games-grid">
 
     <div class="game-card" onclick="openGame('flip')">
@@ -57,18 +57,18 @@
 
 </main>
 
-<!-- Попап пополнения -->
+<!-- Deposit popup -->
 <div id="depositPopup" class="deposit-popup">
     <div class="deposit-box">
-        <h2>Пополнение BUR</h2>
+        <h2>Deposit BUR</h2>
         <div class="deposit-item">100 BUR = 1 ⭐</div>
         <div class="deposit-item">500 BUR = 0.5 TON</div>
         <div class="deposit-item">1000 BUR = 1 TON</div>
-        <button id="closeDeposit">Закрыть</button>
+        <button id="closeDeposit">Close</button>
     </div>
 </div>
 
-<!-- Скрипты -->
+<!-- Scripts -->
 <script src="app.js"></script>
 <script src="ui/animations.js"></script>
 
