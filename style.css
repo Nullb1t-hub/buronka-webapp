@@ -1,76 +1,220 @@
-body{
-
-margin:0;
-font-family:Arial;
-background:#0b0f1a;
-color:white;
-
+/* Общие стили */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.topbar{
-
-display:flex;
-justify-content:space-between;
-padding:15px;
-background:#12182b;
-
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff0055, #ff9900);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.logo{
-
-font-size:22px;
-font-weight:bold;
-color:#ffc400;
-
+/* Верхняя панель */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
-.balance{
-
-background:#1b2340;
-padding:8px 18px;
-border-radius:10px;
-
+.balance {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 1.2rem;
 }
 
-.depositBtn{
-
-background:#ffc400;
-border:none;
-padding:10px 15px;
-border-radius:10px;
-
+.coin-count {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ffd700, #ff6600);
+    border-radius: 25px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #ffd700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.games{
-
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-padding:20px;
-
+.coin-count:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #ffd700;
 }
 
-.gameCard{
-
-background:#182042;
-padding:30px;
-border-radius:14px;
-font-size:18px;
-text-align:center;
-
+/* Кнопки Connect и Пополнить */
+.connect-btn, .deposit-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.hidden{
-
-display:none;
-
+.connect-btn {
+    background-color: #00ffcc;
+    color: #000;
 }
 
-.depositList{
+.deposit-btn {
+    background-color: #ffcc00;
+    color: #000;
+}
 
-display:flex;
-flex-direction:column;
-gap:10px;
-padding:20px;
+.connect-btn:hover, .deposit-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255,255,255,0.7);
+}
 
+/* Основная зона игр */
+.game-zone {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+    gap: 40px;
+}
+
+/* Игровой блок */
+.game-category {
+    background: rgba(0,0,0,0.5);
+    border-radius: 25px;
+    width: 200px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.game-category:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(255,255,255,0.7);
+}
+
+/* Картинка игры */
+.game-img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+}
+
+.game-category:hover .game-img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Название и описание игры */
+.game-title {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.game-desc {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    min-height: 45px;
+}
+
+/* Кнопка Играть */
+.play-btn {
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background: linear-gradient(45deg, #ff0055, #ff9900);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #ffcc00;
+    filter: brightness(1.2);
+}
+
+/* Попап пополнения */
+.deposit-popup {
+    display: none;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0,0,0,0.9);
+    padding: 30px 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    animation: popupAppear 0.5s ease;
+    z-index: 100;
+}
+
+@keyframes popupAppear {
+    from {opacity: 0; transform: translate(-50%, -50%) scale(0.8);}
+    to {opacity: 1; transform: translate(-50%, -50%) scale(1);}
+}
+
+/* Заголовок попапа */
+.deposit-popup h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ffd700;
+}
+
+/* Опции пополнения */
+.deposit-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.deposit-option {
+    padding: 12px 15px;
+    border-radius: 15px;
+    background-color: #222;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.deposit-option:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ffcc00;
+    filter: brightness(1.3);
+}
+
+/* Кнопка закрыть */
+.close-popup {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #ff5555;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.close-popup:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff5555;
+    filter: brightness(1.2);
+}
+
+/* Анимации всплывающих элементов (UI) */
+@keyframes floatUp {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
+    100% {transform: translateY(0);}
+}
+
+.play-btn, .coin-count {
+    animation: floatUp 3s ease-in-out infinite;
 }
