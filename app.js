@@ -1,89 +1,85 @@
-// BUR balance
 let balance = 0
 
-const balanceElement = document.getElementById("balance")
+const balanceEl = document.getElementById("balance")
 
 function updateBalance(){
-    balanceElement.innerText = balance + " BUR"
+
+balanceEl.innerText = balance
+
+localStorage.setItem("balance",balance)
+
 }
 
 
 
-// deposit popup
+function loadBalance(){
+
+let saved = localStorage.getItem("balance")
+
+if(saved){
+
+balance = Number(saved)
+
+}
+
+updateBalance()
+
+}
+
+
+
+function openGame(name){
+
+window.location = "games/" + name + ".html"
+
+}
+
+
+
+/* PROMO */
+
+const promoBtn = document.getElementById("promoBtn")
+
+promoBtn.onclick = ()=>{
+
+const code = document.getElementById("promoInput").value
+
+if(code === "Admin18"){
+
+balance += 1000
+
+updateBalance()
+
+alert("Промокод активирован +1000 BUR")
+
+}else{
+
+alert("Неверный код")
+
+}
+
+}
+
+
+
+/* DEPOSIT */
 
 const depositBtn = document.getElementById("depositBtn")
 const depositPopup = document.getElementById("depositPopup")
 const closeDeposit = document.getElementById("closeDeposit")
 
-depositBtn.onclick = () => {
-    depositPopup.style.display = "flex"
+depositBtn.onclick = ()=>{
+
+depositPopup.style.display="flex"
+
 }
 
-closeDeposit.onclick = () => {
-    depositPopup.style.display = "none"
-}
+closeDeposit.onclick = ()=>{
 
-
-
-// PROMOCODE
-
-let usedPromo = false
-
-function enterPromo(){
-
-    if(usedPromo){
-        alert("Промокод уже использован")
-        return
-    }
-
-    const code = prompt("Введите промокод")
-
-    if(code === "Admin18"){
-
-        balance += 1000
-        updateBalance()
-
-        usedPromo = true
-
-        alert("Вы получили 1000 BUR")
-
-    }else{
-
-        alert("Неверный промокод")
-
-    }
+depositPopup.style.display="none"
 
 }
 
 
 
-// games navigation
-
-const gameCards = document.querySelectorAll(".game-card")
-
-gameCards.forEach(card => {
-
-    card.onclick = () => {
-
-        const game = card.dataset.game
-
-        if(game === "flip"){
-            window.location = "games/flip.html"
-        }
-
-        if(game === "crash"){
-            window.location = "games/crash.html"
-        }
-
-        if(game === "mines"){
-            window.location = "games/mines.html"
-        }
-
-    }
-
-})
-
-
-
-// start
-updateBalance()
+loadBalance()
