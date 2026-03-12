@@ -1,31 +1,89 @@
-// Попап пополнения
-const depositPopup = document.getElementById('depositPopup');
-document.querySelector('.deposit-btn').addEventListener('click', () => {
-    depositPopup.style.display = 'block';
-});
-document.querySelector('.close-popup').addEventListener('click', () => {
-    depositPopup.style.display = 'none';
-});
+// BUR balance
+let balance = 0
 
-// Connect TON
-document.querySelector('.connect-btn').addEventListener('click', () => {
-    alert("Connect TON (тестовая версия)");
-});
+const balanceElement = document.getElementById("balance")
 
-// Кнопки игр
-document.querySelectorAll('.play-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        alert('Игра пока тестовая');
-    });
-});
+function updateBalance(){
+    balanceElement.innerText = balance + " BUR"
+}
 
-// Пример: добавление тестового баланса через кнопки пополнения
-document.querySelectorAll('.deposit-option').forEach(option => {
-    option.addEventListener('click', () => {
-        const value = parseInt(option.textContent.split(' ')[0]); // 200, 500 и т.д.
-        const coinCount = document.querySelector('.coin-count');
-        let current = parseInt(coinCount.textContent);
-        coinCount.textContent = current + value + ' BUR';
-        depositPopup.style.display = 'none';
-    });
-});
+
+
+// deposit popup
+
+const depositBtn = document.getElementById("depositBtn")
+const depositPopup = document.getElementById("depositPopup")
+const closeDeposit = document.getElementById("closeDeposit")
+
+depositBtn.onclick = () => {
+    depositPopup.style.display = "flex"
+}
+
+closeDeposit.onclick = () => {
+    depositPopup.style.display = "none"
+}
+
+
+
+// PROMOCODE
+
+let usedPromo = false
+
+function enterPromo(){
+
+    if(usedPromo){
+        alert("Промокод уже использован")
+        return
+    }
+
+    const code = prompt("Введите промокод")
+
+    if(code === "Admin18"){
+
+        balance += 1000
+        updateBalance()
+
+        usedPromo = true
+
+        alert("Вы получили 1000 BUR")
+
+    }else{
+
+        alert("Неверный промокод")
+
+    }
+
+}
+
+
+
+// games navigation
+
+const gameCards = document.querySelectorAll(".game-card")
+
+gameCards.forEach(card => {
+
+    card.onclick = () => {
+
+        const game = card.dataset.game
+
+        if(game === "flip"){
+            window.location = "games/flip.html"
+        }
+
+        if(game === "crash"){
+            window.location = "games/crash.html"
+        }
+
+        if(game === "mines"){
+            window.location = "games/mines.html"
+        }
+
+    }
+
+})
+
+
+
+// start
+updateBalance()
