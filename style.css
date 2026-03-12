@@ -1,254 +1,258 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
+/* ===================== GENERAL STYLES ===================== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1b1b2f, #2c1b3f);
+    color: #fff;
+    overflow-x: hidden;
 }
 
-body{
-
-background:
-radial-gradient(circle at 20% 20%, #3a1a4a, transparent),
-radial-gradient(circle at 80% 40%, #1b1235, transparent),
-#0b0b12;
-
-color:white;
-min-height:100vh;
-
+/* ---------- BACKGROUND ANIMATION ---------- */
+.background-coins {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
 }
 
-
-
-/* HEADER */
-
-.topbar{
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-padding:25px 40px;
-
+/* ---------- TOP BAR ---------- */
+.topbar {
+    position: relative;
+    width: 100%;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(30,30,50,0.95);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    z-index: 10;
 }
 
-.logo-title{
-
-font-size:34px;
-font-weight:800;
-letter-spacing:3px;
-
+.logo {
+    display: flex;
+    flex-direction: column;
 }
 
-.logo-sub{
-
-opacity:0.6;
-font-size:14px;
-
+.logo-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #f5d400;
+    letter-spacing: 1px;
 }
 
-
-
-/* BUTTONS */
-
-.right-menu{
-
-display:flex;
-gap:12px;
-
+.logo-sub {
+    font-size: 12px;
+    color: #ccc;
 }
 
-.right-menu button{
-
-padding:10px 18px;
-
-border:none;
-border-radius:8px;
-
-background:#242433;
-
-color:white;
-
-cursor:pointer;
-
+.right-menu button {
+    background: linear-gradient(90deg,#ffcc00,#ff9900);
+    border: none;
+    color: #000;
+    padding: 10px 22px;
+    margin-left: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-
-
-/* PROMO */
-
-.promo-bar{
-
-display:flex;
-gap:10px;
-align-items:center;
-
-padding:10px 40px;
-
+.right-menu button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 15px rgba(255,204,0,0.5);
 }
 
-.promo-bar input{
-
-padding:8px;
-border-radius:6px;
-border:none;
-
+/* ---------- PROMO BAR & BALANCE ---------- */
+.promo-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background: rgba(40,40,60,0.9);
+    margin-top: 5px;
+    border-radius: 12px;
 }
 
-.promo-bar button{
-
-padding:8px 14px;
-border:none;
-border-radius:6px;
-
-background:#7a36ff;
-color:white;
-
+.promo-bar input {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    flex: 1;
+    margin-right: 10px;
+    font-size: 14px;
 }
 
-.balance{
-
-margin-left:auto;
-font-weight:700;
-
+.promo-bar button {
+    background: linear-gradient(90deg,#4cd137,#44bd32);
+    border: none;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-
-
-/* GAME GRID */
-
-.games-grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
-gap:30px;
-
-padding:40px;
-
+.promo-bar button:hover {
+    transform: scale(1.05);
 }
 
-
-
-.game-card{
-
-background:#151522;
-
-border-radius:16px;
-
-height:160px;
-
-display:flex;
-flex-direction:column;
-
-align-items:center;
-justify-content:center;
-
-cursor:pointer;
-
-transition:0.2s;
-
+.balance {
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-.game-card:hover{
-
-transform:scale(1.05);
-
-background:#1d1d2d;
-
+/* ===================== GAMES GRID ===================== */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+    padding: 24px;
+    z-index: 1;
+    position: relative;
 }
 
-
-
-.game-icon{
-
-font-size:60px;
-margin-bottom:10px;
-
+.game-card {
+    background: rgba(50,50,80,0.95);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+    font-size: 22px;
+    position: relative;
+    overflow: hidden;
 }
 
-.game-title{
-
-font-weight:700;
-
+.game-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.8);
 }
 
-
-
-/* DEPOSIT */
-
-.deposit-popup{
-
-position:fixed;
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-display:none;
-
-background:rgba(0,0,0,0.7);
-
-align-items:center;
-justify-content:center;
-
+.game-card::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: rgba(255,255,255,0.03);
+    top: -10%;
+    left: -10%;
+    transform: rotate(45deg);
 }
 
-.deposit-box{
-
-background:#171727;
-
-padding:40px;
-
-border-radius:14px;
-
-width:300px;
-
+.game-icon {
+    font-size: 60px;
+    margin-bottom: 14px;
+    transition: transform 0.3s;
 }
 
-.deposit-item{
-
-background:#222235;
-
-padding:10px;
-
-border-radius:8px;
-
-margin-bottom:10px;
-
-cursor:pointer;
-
+.game-card:hover .game-icon {
+    transform: scale(1.15) rotate(-10deg);
 }
 
-
-
-/* FLOATING COINS */
-
-.background-coins{
-
-position:fixed;
-width:100%;
-height:100%;
-pointer-events:none;
-
-background-image:
-radial-gradient(circle,#ffffff22 2px,transparent 2px);
-
-background-size:80px 80px;
-
-animation:moveCoins 20s linear infinite;
-
+.game-title {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    color: #f5f5f5;
 }
 
-@keyframes moveCoins{
-
-from{
-background-position:0 0;
+/* ===================== DEPOSIT POPUP ===================== */
+.deposit-popup {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
 }
 
-to{
-background-position:0 800px;
+.deposit-box {
+    background: #2b2b4a;
+    border-radius: 20px;
+    padding: 40px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
 }
 
+.deposit-box h2 {
+    margin-bottom: 24px;
+    font-size: 24px;
+    color: #ffd700;
+}
+
+.deposit-item {
+    background: rgba(70,70,100,0.85);
+    padding: 12px 16px;
+    border-radius: 12px;
+    width: 100%;
+    margin-bottom: 14px;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.deposit-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+}
+
+.deposit-box button {
+    margin-top: 20px;
+    padding: 10px 26px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(90deg,#ffcc00,#ff9900);
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+    transition: all 0.2s;
+}
+
+.deposit-box button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255,204,0,0.6);
+}
+
+/* ===================== COIN ANIMATION ===================== */
+@keyframes floatCoin {
+    0% { transform: translateY(100vh) rotate(0deg); opacity:0;}
+    50% { opacity:1;}
+    100% { transform: translateY(-50px) rotate(360deg); opacity:0;}
+}
+
+.coin {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: gold;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(255,255,0,0.6);
+    animation: floatCoin 5s linear infinite;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+    .game-card {
+        padding: 24px;
+    }
+    .logo-title {
+        font-size: 22px;
+    }
 }
