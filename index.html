@@ -4,129 +4,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Buronka Casino</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<header class="header">
+<div class="background-coins"></div>
+
+<header class="topbar">
 
 <div class="logo">
-🐄 BURONKA CASINO
+<div class="logo-title">BURONKA</div>
+<div class="logo-sub">crypto casino</div>
 </div>
 
-<div class="top-panel">
-
-<div class="balance-box">
-<span>Баланс</span>
-<div id="balance">0 BUR</div>
-</div>
-
-<button class="deposit-btn" id="depositBtn">
-Пополнение
-</button>
-
-<button class="connect-btn">
-Connect Wallet
-</button>
-
+<div class="right-menu">
+<button id="connectBtn">Connect</button>
+<button id="depositBtn">Пополнение</button>
 </div>
 
 </header>
 
 
+<div class="promo-bar">
 
-<main class="games-container">
+<input id="promoInput" placeholder="Введите промокод">
+
+<button id="promoBtn">Активировать</button>
+
+<div class="balance">
+Баланс: <span id="balance">0</span> BUR
+</div>
+
+</div>
 
 
-<div class="game-card" data-game="flip">
+<main class="games-grid">
 
+<div class="game-card" onclick="openGame('flip')">
 <div class="game-icon">🪙</div>
-
-<div class="game-name">
-Coin Flip
+<div class="game-title">Coin Flip</div>
 </div>
 
-<div class="game-desc">
-Бурёнка или обычная
-</div>
-
-<button class="play-button">
-Играть
-</button>
-
-</div>
-
-
-
-<div class="game-card" data-game="crash">
-
+<div class="game-card" onclick="openGame('crash')">
 <div class="game-icon">🚀</div>
-
-<div class="game-name">
-Crash
+<div class="game-title">Crash</div>
 </div>
 
-<div class="game-desc">
-Поймай множитель
-</div>
-
-<button class="play-button">
-Играть
-</button>
-
-</div>
-
-
-
-<div class="game-card" data-game="mines">
-
+<div class="game-card" onclick="openGame('mines')">
 <div class="game-icon">💣</div>
-
-<div class="game-name">
-Mines
+<div class="game-title">Mines</div>
 </div>
-
-<div class="game-desc">
-Не взорви бомбу
-</div>
-
-<button class="play-button">
-Играть
-</button>
-
-</div>
-
-
 
 <div class="game-card">
-
 <div class="game-icon">🎰</div>
-
-<div class="game-name">
-Slots
+<div class="game-title">Slots</div>
 </div>
-
-<div class="game-desc">
-Скоро
-</div>
-
-<button class="play-button">
-Играть
-</button>
-
-</div>
-
 
 </main>
 
 
-
-<div class="deposit-popup" id="depositPopup">
+<div id="depositPopup" class="deposit-popup">
 
 <div class="deposit-box">
 
@@ -135,23 +74,16 @@ Slots
 <div class="deposit-item">100 BUR = 1 ⭐</div>
 <div class="deposit-item">500 BUR = 0.5 TON</div>
 <div class="deposit-item">1000 BUR = 1 TON</div>
-<div class="deposit-item">5000 BUR = 5 TON</div>
 
-<button id="closeDeposit">
-Закрыть
-</button>
+<button id="closeDeposit">Закрыть</button>
 
 </div>
 
 </div>
 
 
-
-<script src="ui/animations.js"></script>
-<script src="games/flip.js"></script>
-<script src="games/crash.js"></script>
-<script src="games/mines.js"></script>
 <script src="app.js"></script>
+<script src="ui/animations.js"></script>
 
 </body>
 </html>
