@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Buronka Casino</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<div class="logo">
+🐮 BURONKA
+</div>
+
+<div class="balance">
+<span id="coins">0</span> BUR
+</div>
+
+<button class="connect" onclick="connectWallet()">Connect</button>
+
+</div>
+
+
+<div class="deposit">
+
+⭐ 1 Star = 100 BUR  
+💎 1 TON = 250 BUR  
+💵 $1 = 100 BUR
+
+</div>
+
+
+<div class="promo">
+
+<input id="promoInput" placeholder="Enter promo code">
+
+<button onclick="applyPromo()">Apply</button>
+
+</div>
+
+
+
+<h2>Games</h2>
+
+
+<div class="games">
+
+<button class="game" onclick="openGame('flip')">
+🐮 Cow Flip
+</button>
+
+<button class="game" onclick="openGame('crash')">
+🚀 Crash
+</button>
+
+<button class="game" onclick="openGame('mines')">
+💣 Mines
+</button>
+
+</div>
+
+
+
+<div id="gameScreen" class="hidden">
+
+<h2 id="gameTitle"></h2>
+
+<div class="bet">
+
+<input id="betInput" value="10">
+
+</div>
+
+
+
+<div id="flipGame" class="hidden">
+
+<button onclick="playFlip('cool')">Cool Cow 😎</button>
+
+<button onclick="playFlip('boring')">Boring Cow 🐄</button>
+
+</div>
+
+
+
+<div id="crashGame" class="hidden">
+
+<div class="multiplier" id="multiplier">1.00x</div>
+
+<button onclick="startCrash()">Start</button>
+
+<button onclick="cashout()">Cashout</button>
+
+</div>
+
+
+
+<div id="minesGame" class="hidden">
+
+<div id="minesGrid"></div>
+
+<button onclick="startMines()">Start</button>
+
+</div>
+
+
+
+<button class="back" onclick="closeGame()">Back</button>
+
+</div>
+
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
