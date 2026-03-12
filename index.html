@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Buronka Casino</title>
 
@@ -22,105 +22,65 @@
 </div>
 
 <div class="balance">
+
 <span id="coins">0</span> BUR
-</div>
-
-<button class="connect" onclick="connectWallet()">Connect</button>
 
 </div>
 
-
-<div class="deposit">
-
-⭐ 1 Star = 100 BUR  
-💎 1 TON = 250 BUR  
-💵 $1 = 100 BUR
+<button class="depositBtn" onclick="openDeposit()">
+Deposit
+</button>
 
 </div>
 
 
-<div class="promo">
+<div id="depositMenu" class="hidden">
 
-<input id="promoInput" placeholder="Enter promo code">
+<h2>Deposit</h2>
 
-<button onclick="applyPromo()">Apply</button>
+<div class="depositList">
+
+<div>⭐ 1 Star = 100 BUR</div>
+<div>💎 1 TON = 250 BUR</div>
+<div>💵 $1 = 100 BUR</div>
 
 </div>
 
+<button onclick="closeDeposit()">Back</button>
 
-
-<h2>Games</h2>
+</div>
 
 
 <div class="games">
 
-<button class="game" onclick="openGame('flip')">
-🐮 Cow Flip
-</button>
-
-<button class="game" onclick="openGame('crash')">
+<div class="gameCard" onclick="openGame('crash')">
 🚀 Crash
-</button>
-
-<button class="game" onclick="openGame('mines')">
-💣 Mines
-</button>
-
 </div>
 
+<div class="gameCard" onclick="openGame('mines')">
+💣 Mines
+</div>
+
+<div class="gameCard" onclick="openGame('flip')">
+🐮 Cow Flip
+</div>
+
+</div>
 
 
 <div id="gameScreen" class="hidden">
 
-<h2 id="gameTitle"></h2>
+<div id="gameArea"></div>
 
-<div class="bet">
-
-<input id="betInput" value="10">
+<button onclick="backHome()">Back</button>
 
 </div>
-
-
-
-<div id="flipGame" class="hidden">
-
-<button onclick="playFlip('cool')">Cool Cow 😎</button>
-
-<button onclick="playFlip('boring')">Boring Cow 🐄</button>
-
-</div>
-
-
-
-<div id="crashGame" class="hidden">
-
-<div class="multiplier" id="multiplier">1.00x</div>
-
-<button onclick="startCrash()">Start</button>
-
-<button onclick="cashout()">Cashout</button>
-
-</div>
-
-
-
-<div id="minesGame" class="hidden">
-
-<div id="minesGrid"></div>
-
-<button onclick="startMines()">Start</button>
-
-</div>
-
-
-
-<button class="back" onclick="closeGame()">Back</button>
-
-</div>
-
 
 
 <script src="app.js"></script>
+<script src="games/crash.js"></script>
+<script src="games/mines.js"></script>
+<script src="games/flip.js"></script>
 
 </body>
 </html>
