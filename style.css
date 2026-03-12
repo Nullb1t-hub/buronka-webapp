@@ -1,9 +1,9 @@
 body{
 
-background:#0b0b0b;
-color:white;
+margin:0;
 font-family:Arial;
-text-align:center;
+background:#0b0f1a;
+color:white;
 
 }
 
@@ -11,125 +11,52 @@ text-align:center;
 
 display:flex;
 justify-content:space-between;
-align-items:center;
 padding:15px;
-background:#141414;
+background:#12182b;
 
 }
 
 .logo{
 
+font-size:22px;
 font-weight:bold;
-font-size:20px;
-color:#ffd000;
+color:#ffc400;
 
 }
 
 .balance{
 
-background:#1f1f1f;
+background:#1b2340;
 padding:8px 18px;
 border-radius:10px;
 
 }
 
-.connect{
+.depositBtn{
 
-background:#ffd000;
+background:#ffc400;
 border:none;
-padding:8px 15px;
-border-radius:8px;
-
-}
-
-.deposit{
-
-margin:15px;
-font-size:14px;
-opacity:0.7;
-
-}
-
-.promo{
-
-margin:20px;
-
-}
-
-.promo input{
-
-padding:10px;
-border-radius:8px;
-border:none;
-
-}
-
-.promo button{
-
-padding:10px;
-background:#ffd000;
-border:none;
-border-radius:8px;
+padding:10px 15px;
+border-radius:10px;
 
 }
 
 .games{
 
-display:flex;
-flex-direction:column;
-gap:10px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
 padding:20px;
 
 }
 
-.game{
+.gameCard{
 
-padding:15px;
-background:#1a1a1a;
-border:none;
-border-radius:12px;
-color:white;
-font-size:16px;
-
-}
-
-.bet input{
-
-padding:10px;
-border-radius:8px;
-border:none;
-
-}
-
-.multiplier{
-
-font-size:35px;
-margin:20px;
-
-}
-
-#minesGrid{
-
-display:grid;
-grid-template-columns:repeat(5,60px);
-gap:10px;
-justify-content:center;
-margin-top:20px;
-
-}
-
-.cell{
-
-width:60px;
-height:60px;
-background:#1c1c1c;
-border-radius:8px;
-
-}
-
-.cell.open{
-
-background:#ffd000;
+background:#182042;
+padding:30px;
+border-radius:14px;
+font-size:18px;
+text-align:center;
 
 }
 
@@ -139,12 +66,11 @@ display:none;
 
 }
 
-.back{
+.depositList{
 
-margin-top:20px;
-padding:10px 20px;
-background:#ffd000;
-border:none;
-border-radius:10px;
+display:flex;
+flex-direction:column;
+gap:10px;
+padding:20px;
 
 }
