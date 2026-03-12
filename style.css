@@ -1,220 +1,212 @@
-/* Общие стили */
+/* Общие */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #ff0055, #ff9900);
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #ff0055, #ff9900);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  transition: background 1s ease;
 }
 
 /* Верхняя панель */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
 .balance {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    font-size: 1.2rem;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 1.3rem;
 }
 
 .coin-count {
-    padding: 10px 20px;
-    background: linear-gradient(45deg, #ffd700, #ff6600);
-    border-radius: 25px;
-    font-weight: bold;
-    box-shadow: 0 0 10px #ffd700;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 10px 25px;
+  background: linear-gradient(45deg, #ffd700, #ff6600);
+  border-radius: 25px;
+  font-weight: bold;
+  box-shadow: 0 0 15px #ffd700;
+  cursor: pointer;
+  animation: floatUp 3s ease-in-out infinite;
 }
 
-.coin-count:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px #ffd700;
-}
-
-/* Кнопки Connect и Пополнить */
+/* Кнопки */
 .connect-btn, .deposit-btn {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  animation: floatUp 4s ease-in-out infinite alternate;
 }
 
 .connect-btn {
-    background-color: #00ffcc;
-    color: #000;
+  background-color: #00ffcc;
+  color: #000;
 }
 
 .deposit-btn {
-    background-color: #ffcc00;
-    color: #000;
+  background-color: #ffcc00;
+  color: #000;
 }
 
 .connect-btn:hover, .deposit-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255,255,255,0.7);
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255,255,255,0.8);
+  filter: brightness(1.2);
 }
 
-/* Основная зона игр */
+/* Игровая зона */
 .game-zone {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 50px 20px;
-    gap: 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 50px 20px;
+  gap: 50px;
 }
 
 /* Игровой блок */
 .game-category {
-    background: rgba(0,0,0,0.5);
-    border-radius: 25px;
-    width: 200px;
-    text-align: center;
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    position: relative;
+  background: rgba(0,0,0,0.5);
+  border-radius: 25px;
+  width: 220px;
+  text-align: center;
+  padding: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .game-category:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 30px rgba(255,255,255,0.7);
+  transform: translateY(-15px) rotate(-2deg);
+  box-shadow: 0 0 40px rgba(255,255,255,0.7);
 }
 
 /* Картинка игры */
 .game-img {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 15px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    transition: transform 0.3s ease;
+  width: 140px;
+  height: 140px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease;
 }
 
 .game-category:hover .game-img {
-    transform: scale(1.1) rotate(5deg);
+  transform: scale(1.15) rotate(5deg);
 }
 
-/* Название и описание игры */
+/* Название и описание */
 .game-title {
-    font-size: 1.3rem;
-    margin-bottom: 5px;
-    font-weight: bold;
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .game-desc {
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-    min-height: 45px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  min-height: 50px;
 }
 
-/* Кнопка Играть */
+/* Кнопка играть */
 .play-btn {
-    padding: 10px 20px;
-    border-radius: 15px;
-    border: none;
-    background: linear-gradient(45deg, #ff0055, #ff9900);
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  padding: 12px 25px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(45deg, #ff0055, #ff9900);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .play-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px #ffcc00;
-    filter: brightness(1.2);
+  transform: scale(1.15) rotate(-2deg);
+  box-shadow: 0 0 25px #ffcc00;
+  filter: brightness(1.3);
 }
 
 /* Попап пополнения */
 .deposit-popup {
-    display: none;
-    position: fixed;
-    top: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0,0,0,0.9);
-    padding: 30px 40px;
-    border-radius: 25px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-    animation: popupAppear 0.5s ease;
-    z-index: 100;
+  display: none;
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0,0,0,0.9);
+  padding: 35px 50px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  animation: popupAppear 0.5s ease;
+  z-index: 100;
 }
 
 @keyframes popupAppear {
-    from {opacity: 0; transform: translate(-50%, -50%) scale(0.8);}
-    to {opacity: 1; transform: translate(-50%, -50%) scale(1);}
+  from {opacity: 0; transform: translate(-50%, -50%) scale(0.7);}
+  to {opacity: 1; transform: translate(-50%, -50%) scale(1);}
 }
 
-/* Заголовок попапа */
 .deposit-popup h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px #ffd700;
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+  text-shadow: 0 0 12px #ffd700;
 }
 
-/* Опции пополнения */
 .deposit-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
 .deposit-option {
-    padding: 12px 15px;
-    border-radius: 15px;
-    background-color: #222;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  padding: 15px 20px;
+  border-radius: 20px;
+  background-color: #222;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .deposit-option:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #ffcc00;
-    filter: brightness(1.3);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ffcc00;
+  filter: brightness(1.3);
 }
 
-/* Кнопка закрыть */
 .close-popup {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 15px;
-    background-color: #ff5555;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 20px;
+  background-color: #ff5555;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .close-popup:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #ff5555;
-    filter: brightness(1.2);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ff5555;
+  filter: brightness(1.3);
 }
 
-/* Анимации всплывающих элементов (UI) */
+/* Анимация плавающих кнопок */
 @keyframes floatUp {
-    0% {transform: translateY(0);}
-    50% {transform: translateY(-10px);}
-    100% {transform: translateY(0);}
-}
-
-.play-btn, .coin-count {
-    animation: floatUp 3s ease-in-out infinite;
+  0% {transform: translateY(0);}
+  50% {transform: translateY(-10px);}
+  100% {transform: translateY(0);}
 }
