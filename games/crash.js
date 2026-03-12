@@ -1,155 +1,112 @@
-let multiplier = 1
-let crashed = false
-let betting = true
+// ===================== CRASH GAME =====================
+const crashScreen = document.getElementById('game-screen');
+const crashMultiplier = document.getElementById('crash-multiplier');
+const crashHistory = document.getElementById('crash-history');
+const crashBetInput = document.getElementById('crash-bet');
+const crashBetButton = document.getElementById('crash-bet-btn');
+const crashCashoutButton = document.getElementById('crash-cashout-btn');
+const crashBackButton = document.getElementById('crash-back-btn');
+let crashBalance = 1000; // стартовый баланс
+let currentBet = 0;
+let currentMultiplier = 1;
+let interval = null;
+let crashed = false;
+let history = [];
 
-let bet = 0
-let playing = false
-
-const multiplierEl = document.getElementById("multiplier")
-const timerEl = document.getElementById("timer")
-const historyEl = document.getElementById("history")
-
-const betBtn = document.getElementById("betBtn")
-const cashBtn = document.getElementById("cashBtn")
-const betInput = document.getElementById("betAmount")
-
-let crashPoint = 0
-
-
-function generateCrash(){
-
-    return (Math.random()*5 + 1).toFixed(2)
-
+function updateBalanceDisplay() {
+    document.getElementById('balance-display').innerText = `Balance: ${crashBalance} BUR`;
 }
 
-
-
-function startRound(){
-
-    multiplier = 1
-    crashed = false
-    betting = true
-    playing = false
-
-    crashPoint = generateCrash()
-
-    startTimer()
-
+function startCrashGame() {
+    crashScreen.style.display = 'block';
+    crashMultiplier.innerText = '1.00x';
+    currentMultiplier = 1;
+    crashed = false;
+    crashBetButton.disabled = false;
+    crashCashoutButton.disabled = true;
 }
 
+function placeBet() {
+    currentBet = parseInt(crashBetInput.value);
+    if(currentBet > crashBalance || currentBet <= 0) {
+        alert('Invalid bet!');
+        return;
+    }
+    crashBalance -= currentBet;
+    updateBalanceDisplay();
+    crashBetButton.disabled = true;
+    crashCashoutButton.disabled = false;
+    runCrash();
+}
 
-
-function startTimer(){
-
-    let t = 5
-
-    timerEl.innerText = "Ставки через " + t
-
-    let timer = setInterval(()=>{
-
-        t--
-
-        timerEl.innerText = "Ставки через " + t
-
-        if(t <= 0){
-
-            clearInterval(timer)
-
-            betting = false
-            timerEl.innerText = "Идёт игра"
-
-            startCrash()
-
+function runCrash() {
+    // Случайный момент краша
+    const crashPoint = (Math.random() * 9 + 1).toFixed(2); // 1x - 10x
+    interval = setInterval(() => {
+        if(crashed) return;
+        currentMultiplier = (currentMultiplier + 0.01).toFixed(2);
+        crashMultiplier.innerText = `${currentMultiplier}x`;
+        updateMultiplierColor(currentMultiplier);
+        if(currentMultiplier >= crashPoint) {
+            crashed = true;
+            crashMultiplier.innerText = `${crashPoint}x`;
+            crashHistory.unshift(`Lost ${currentBet} BUR at ${crashPoint}x`);
+            if(crashHistory.length > 6) crashHistory.pop();
+            renderHistory();
+            crashCashoutButton.disabled = true;
+            setTimeout(() => {
+                crashScreen.style.display = 'none';
+            }, 5000);
+            clearInterval(interval);
         }
-
-    },1000)
-
+    }, 50);
 }
 
-
-
-function startCrash(){
-
-    let speed = setInterval(()=>{
-
-        multiplier += 0.02
-
-        multiplierEl.innerText = multiplier.toFixed(2) + "x"
-
-        if(multiplier >= crashPoint){
-
-            clearInterval(speed)
-
-            crashed = true
-
-            multiplierEl.innerText = crashPoint + "x 💥"
-
-            addHistory(crashPoint)
-
-            setTimeout(startRound,4000)
-
-        }
-
-    },50)
-
+function cashout() {
+    if(crashed) return;
+    const win = Math.floor(currentBet * currentMultiplier);
+    crashBalance += win;
+    updateBalanceDisplay();
+    crashHistory.unshift(`Won ${win} BUR at ${currentMultiplier}x`);
+    if(crashHistory.length > 6) crashHistory.pop();
+    renderHistory();
+    crashed = true;
+    clearInterval(interval);
+    crashCashoutButton.disabled = true;
+    setTimeout(() => {
+        crashScreen.style.display = 'none';
+    }, 5000);
 }
 
-
-
-function addHistory(x){
-
-    let el = document.createElement("div")
-
-    el.innerText = x + "x"
-
-    historyEl.prepend(el)
-
-}
-
-
-
-betBtn.onclick = () => {
-
-    if(!betting){
-        alert("Ставки закрыты")
-        return
+function updateMultiplierColor(mult) {
+    mult = parseFloat(mult);
+    if(mult >= 6) {
+        crashMultiplier.style.color = '#9b59b6'; // фиолетовый 6x+
+    } else if(mult > 2) {
+        crashMultiplier.style.color = '#bdc3c7'; // серый средний
+    } else if(mult <= 2) {
+        crashMultiplier.style.color = '#e74c3c'; // красный низкий
     }
-
-    bet = Number(betInput.value)
-
-    if(bet <= 0){
-        alert("Введите ставку")
-        return
-    }
-
-    playing = true
-
-    alert("Ставка принята")
-
+    // можно добавить зеленый для промо раундов
 }
 
-
-
-cashBtn.onclick = () => {
-
-    if(!playing){
-        return
-    }
-
-    if(crashed){
-        alert("Вы проиграли")
-        playing = false
-        return
-    }
-
-    let win = bet * multiplier
-
-    alert("Вы забрали " + win.toFixed(0) + " BUR")
-
-    playing = false
-
+function renderHistory() {
+    crashHistory.innerHTML = '';
+    history.forEach(h => {
+        const li = document.createElement('li');
+        li.innerText = h;
+        crashHistory.appendChild(li);
+    });
 }
 
+// Кнопка назад
+crashBackButton.addEventListener('click', () => {
+    crashScreen.style.display = 'none';
+    clearInterval(interval);
+});
 
+// Ставка и кэш аут
+crashBetButton.addEventListener('click', placeBet);
+crashCashoutButton.addEventListener('click', cashout);
 
-startRound()
+updateBalanceDisplay();
