@@ -1,103 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Buronka Casino</title>
-<!-- Стиль будет позже подключен style.css -->
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-<!-- Верхняя панель -->
 <header class="header">
-    <div class="balance">
-        <span class="coin-count">0 BUR</span>
-        <button class="connect-btn">Connect TON</button>
-        <button class="deposit-btn">Пополнить</button>
-    </div>
+
+<div class="logo">
+🐄 BURONKA CASINO
+</div>
+
+<div class="top-panel">
+
+<div class="balance-box">
+<span>Баланс</span>
+<div id="balance">0 BUR</div>
+</div>
+
+<button class="deposit-btn" id="depositBtn">
+Пополнение
+</button>
+
+<button class="connect-btn">
+Connect Wallet
+</button>
+
+</div>
+
 </header>
 
-<!-- Главная игровая зона -->
-<main class="game-zone">
 
-    <!-- Coin Flip -->
-    <section class="game-category" id="flip">
-        <div class="game-card">
-            <img src="assets/flip-icon.png" alt="Coin Flip" class="game-img">
-            <h3 class="game-title">Coin Flip</h3>
-            <p class="game-desc">Бурёнка или скучная монета</p>
-            <button class="play-btn">Играть</button>
-        </div>
-    </section>
 
-    <!-- Crash -->
-    <section class="game-category" id="crash">
-        <div class="game-card">
-            <img src="assets/crash-icon.png" alt="Crash" class="game-img">
-            <h3 class="game-title">Crash</h3>
-            <p class="game-desc">Следи за стрелкой и забирай выигрыш вовремя!</p>
-            <button class="play-btn">Играть</button>
-        </div>
-    </section>
+<main class="games-container">
 
-    <!-- Mines -->
-    <section class="game-category" id="mines">
-        <div class="game-card">
-            <img src="assets/mines-icon.png" alt="Mines" class="game-img">
-            <h3 class="game-title">Mines</h3>
-            <p class="game-desc">Выбирай безопасные клетки и не попадай на бомбу</p>
-            <button class="play-btn">Играть</button>
-        </div>
-    </section>
 
-    <!-- Slots -->
-    <section class="game-category" id="slots">
-        <div class="game-card">
-            <img src="assets/slots-icon.png" alt="Slots" class="game-img">
-            <h3 class="game-title">Slots</h3>
-            <p class="game-desc">Скоро появится!</p>
-            <button class="play-btn">Играть</button>
-        </div>
-    </section>
+<div class="game-card" data-game="flip">
+
+<div class="game-icon">🪙</div>
+
+<div class="game-name">
+Coin Flip
+</div>
+
+<div class="game-desc">
+Бурёнка или обычная
+</div>
+
+<button class="play-button">
+Играть
+</button>
+
+</div>
+
+
+
+<div class="game-card" data-game="crash">
+
+<div class="game-icon">🚀</div>
+
+<div class="game-name">
+Crash
+</div>
+
+<div class="game-desc">
+Поймай множитель
+</div>
+
+<button class="play-button">
+Играть
+</button>
+
+</div>
+
+
+
+<div class="game-card" data-game="mines">
+
+<div class="game-icon">💣</div>
+
+<div class="game-name">
+Mines
+</div>
+
+<div class="game-desc">
+Не взорви бомбу
+</div>
+
+<button class="play-button">
+Играть
+</button>
+
+</div>
+
+
+
+<div class="game-card">
+
+<div class="game-icon">🎰</div>
+
+<div class="game-name">
+Slots
+</div>
+
+<div class="game-desc">
+Скоро
+</div>
+
+<button class="play-button">
+Играть
+</button>
+
+</div>
+
 
 </main>
 
-<!-- Пополнение -->
+
+
 <div class="deposit-popup" id="depositPopup">
-    <h2>Пополнение монет</h2>
-    <div class="deposit-options">
-        <div class="deposit-option">200 BUR = 2.22 TON</div>
-        <div class="deposit-option">500 BUR = 5.55 TON</div>
-        <div class="deposit-option">1000 BUR = 11.11 TON</div>
-        <div class="deposit-option">2500 BUR = 27.77 TON</div>
-        <div class="deposit-option">5000 BUR = 55.55 TON</div>
-    </div>
-    <button class="close-popup">Закрыть</button>
+
+<div class="deposit-box">
+
+<h2>Пополнение BUR</h2>
+
+<div class="deposit-item">100 BUR = 1 ⭐</div>
+<div class="deposit-item">500 BUR = 0.5 TON</div>
+<div class="deposit-item">1000 BUR = 1 TON</div>
+<div class="deposit-item">5000 BUR = 5 TON</div>
+
+<button id="closeDeposit">
+Закрыть
+</button>
+
 </div>
 
-<!-- JS пока только базовый -->
-<script>
-    // Попап пополнения
-    const depositPopup = document.getElementById('depositPopup');
-    document.querySelector('.deposit-btn').addEventListener('click', () => {
-        depositPopup.style.display = 'block';
-    });
-    document.querySelector('.close-popup').addEventListener('click', () => {
-        depositPopup.style.display = 'none';
-    });
+</div>
 
-    // Connect TON
-    document.querySelector('.connect-btn').addEventListener('click', () => {
-        alert("Connect TON (тестовая версия)");
-    });
 
-    // Кнопки игр (тест)
-    document.querySelectorAll('.play-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            alert('Игра пока тестовая');
-        });
-    });
-</script>
+
+<script src="ui/animations.js"></script>
+<script src="games/flip.js"></script>
+<script src="games/crash.js"></script>
+<script src="games/mines.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
