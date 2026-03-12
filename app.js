@@ -1,50 +1,31 @@
-let coins = localStorage.getItem("coins")
+// Попап пополнения
+const depositPopup = document.getElementById('depositPopup');
+document.querySelector('.deposit-btn').addEventListener('click', () => {
+    depositPopup.style.display = 'block';
+});
+document.querySelector('.close-popup').addEventListener('click', () => {
+    depositPopup.style.display = 'none';
+});
 
-if(!coins){
+// Connect TON
+document.querySelector('.connect-btn').addEventListener('click', () => {
+    alert("Connect TON (тестовая версия)");
+});
 
-coins=1000
-localStorage.setItem("coins",coins)
+// Кнопки игр
+document.querySelectorAll('.play-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        alert('Игра пока тестовая');
+    });
+});
 
-}
-
-updateBalance()
-
-function updateBalance(){
-
-document.getElementById("coins").innerText=coins
-
-}
-
-function openDeposit(){
-
-document.getElementById("depositMenu").classList.remove("hidden")
-
-}
-
-function closeDeposit(){
-
-document.getElementById("depositMenu").classList.add("hidden")
-
-}
-
-function openGame(game){
-
-document.querySelector(".games").style.display="none"
-
-document.getElementById("gameScreen").classList.remove("hidden")
-
-if(game==="crash") loadCrash()
-
-if(game==="mines") loadMines()
-
-if(game==="flip") loadFlip()
-
-}
-
-function backHome(){
-
-document.getElementById("gameScreen").classList.add("hidden")
-
-document.querySelector(".games").style.display="grid"
-
-}
+// Пример: добавление тестового баланса через кнопки пополнения
+document.querySelectorAll('.deposit-option').forEach(option => {
+    option.addEventListener('click', () => {
+        const value = parseInt(option.textContent.split(' ')[0]); // 200, 500 и т.д.
+        const coinCount = document.querySelector('.coin-count');
+        let current = parseInt(coinCount.textContent);
+        coinCount.textContent = current + value + ' BUR';
+        depositPopup.style.display = 'none';
+    });
+});
