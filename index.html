@@ -1,87 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buronka Casino</title>
-
-<link rel="stylesheet" href="style.css">
-
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-
+<!-- Стиль будет позже подключен style.css -->
 </head>
-
 <body>
 
-<div class="topbar">
+<!-- Верхняя панель -->
+<header class="header">
+    <div class="balance">
+        <span class="coin-count">0 BUR</span>
+        <button class="connect-btn">Connect TON</button>
+        <button class="deposit-btn">Пополнить</button>
+    </div>
+</header>
 
-<div class="logo">
-🐮 BURONKA
+<!-- Главная игровая зона -->
+<main class="game-zone">
+
+    <!-- Coin Flip -->
+    <section class="game-category" id="flip">
+        <div class="game-card">
+            <img src="assets/flip-icon.png" alt="Coin Flip" class="game-img">
+            <h3 class="game-title">Coin Flip</h3>
+            <p class="game-desc">Бурёнка или скучная монета</p>
+            <button class="play-btn">Играть</button>
+        </div>
+    </section>
+
+    <!-- Crash -->
+    <section class="game-category" id="crash">
+        <div class="game-card">
+            <img src="assets/crash-icon.png" alt="Crash" class="game-img">
+            <h3 class="game-title">Crash</h3>
+            <p class="game-desc">Следи за стрелкой и забирай выигрыш вовремя!</p>
+            <button class="play-btn">Играть</button>
+        </div>
+    </section>
+
+    <!-- Mines -->
+    <section class="game-category" id="mines">
+        <div class="game-card">
+            <img src="assets/mines-icon.png" alt="Mines" class="game-img">
+            <h3 class="game-title">Mines</h3>
+            <p class="game-desc">Выбирай безопасные клетки и не попадай на бомбу</p>
+            <button class="play-btn">Играть</button>
+        </div>
+    </section>
+
+    <!-- Slots -->
+    <section class="game-category" id="slots">
+        <div class="game-card">
+            <img src="assets/slots-icon.png" alt="Slots" class="game-img">
+            <h3 class="game-title">Slots</h3>
+            <p class="game-desc">Скоро появится!</p>
+            <button class="play-btn">Играть</button>
+        </div>
+    </section>
+
+</main>
+
+<!-- Пополнение -->
+<div class="deposit-popup" id="depositPopup">
+    <h2>Пополнение монет</h2>
+    <div class="deposit-options">
+        <div class="deposit-option">200 BUR = 2.22 TON</div>
+        <div class="deposit-option">500 BUR = 5.55 TON</div>
+        <div class="deposit-option">1000 BUR = 11.11 TON</div>
+        <div class="deposit-option">2500 BUR = 27.77 TON</div>
+        <div class="deposit-option">5000 BUR = 55.55 TON</div>
+    </div>
+    <button class="close-popup">Закрыть</button>
 </div>
 
-<div class="balance">
+<!-- JS пока только базовый -->
+<script>
+    // Попап пополнения
+    const depositPopup = document.getElementById('depositPopup');
+    document.querySelector('.deposit-btn').addEventListener('click', () => {
+        depositPopup.style.display = 'block';
+    });
+    document.querySelector('.close-popup').addEventListener('click', () => {
+        depositPopup.style.display = 'none';
+    });
 
-<span id="coins">0</span> BUR
+    // Connect TON
+    document.querySelector('.connect-btn').addEventListener('click', () => {
+        alert("Connect TON (тестовая версия)");
+    });
 
-</div>
-
-<button class="depositBtn" onclick="openDeposit()">
-Deposit
-</button>
-
-</div>
-
-
-<div id="depositMenu" class="hidden">
-
-<h2>Deposit</h2>
-
-<div class="depositList">
-
-<div>⭐ 1 Star = 100 BUR</div>
-<div>💎 1 TON = 250 BUR</div>
-<div>💵 $1 = 100 BUR</div>
-
-</div>
-
-<button onclick="closeDeposit()">Back</button>
-
-</div>
-
-
-<div class="games">
-
-<div class="gameCard" onclick="openGame('crash')">
-🚀 Crash
-</div>
-
-<div class="gameCard" onclick="openGame('mines')">
-💣 Mines
-</div>
-
-<div class="gameCard" onclick="openGame('flip')">
-🐮 Cow Flip
-</div>
-
-</div>
-
-
-<div id="gameScreen" class="hidden">
-
-<div id="gameArea"></div>
-
-<button onclick="backHome()">Back</button>
-
-</div>
-
-
-<script src="app.js"></script>
-<script src="games/crash.js"></script>
-<script src="games/mines.js"></script>
-<script src="games/flip.js"></script>
-<script src="ui/animations.js"></script>
+    // Кнопки игр (тест)
+    document.querySelectorAll('.play-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            alert('Игра пока тестовая');
+        });
+    });
+</script>
 
 </body>
 </html>
