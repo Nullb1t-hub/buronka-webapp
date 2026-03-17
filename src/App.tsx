@@ -5,26 +5,30 @@ import { LayoutGrid, Wallet, Gift, User, Star } from 'lucide-react';
 import { useUserStore } from './store/useUserStore';
 import { useTelegram } from './hooks/useTelegram';
 
-// Импортируем наши страницы
-import Profile from './pages/Profile/Profile';
+// ИМПОРТ ВСЕХ СТРАНИЦ
+import Home from './pages/Home/Home';
 import Shop from './pages/Shop/Shop';
+import Profile from './pages/Profile/Profile';
+import Bonuses from './pages/Bonuses/Bonuses';
+import Mines from './pages/Games/Mines/Mines';
 
 const App = () => {
   const { tickets } = useUserStore();
-  const { user } = useTelegram();
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Конфиг навигации
   const navItems = [
-    { path: '/', icon: <LayoutGrid />, label: 'Игры' },
-    { path: '/shop', icon: <Wallet />, label: 'Касса' },
-    { path: '/bonuses', icon: <Gift />, label: 'Бонусы' },
-    { path: '/profile', icon: <User />, label: 'Профиль' },
+    { path: '/', icon: <LayoutGrid size={24} />, label: 'Игры' },
+    { path: '/shop', icon: <Wallet size={24} />, label: 'Касса' },
+    { path: '/bonuses', icon: <Gift size={24} />, label: 'Бонусы' },
+    { path: '/profile', icon: <User size={24} />, label: 'Профиль' },
   ];
 
   return (
     <div className="flex flex-col h-[100dvh] bg-dark-bg text-white overflow-hidden font-sans">
-      {/* HEADER */}
+      
+      {/* HEADER (ШАПКА) */}
       <header className="p-4 flex justify-between items-center border-b border-white/5 bg-card-bg/30 backdrop-blur-md sticky top-0 z-50">
         <div className="flex flex-col">
           <span className="text-[10px] font-black text-white/40 tracking-[3px] uppercase">Buronka</span>
@@ -36,42 +40,38 @@ const App = () => {
         <TonConnectButton />
       </header>
 
-      {/* PAGES ROUTING */}
+      {/* ОСНОВНОЙ КОНТЕНТ */}
       <main className="flex-1 overflow-y-auto p-4 pb-28">
         <Routes>
-          <Route path="/" element={
-            <div className="flex flex-col items-center justify-center py-20 opacity-50">
-              <LayoutGrid size={48} className="mb-4" />
-              <p className="font-bold">ЛОББИ В РАЗРАБОТКЕ</p>
-            </div>
-          } />
+          <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
-          <Route path="/bonuses" element={
-            <div className="flex flex-col items-center justify-center py-20 opacity-50">
-              <Gift size={48} className="mb-4" />
-              <p className="font-bold">СКОРО НОВЫЕ БОНУСЫ</p>
-            </div>
-          } />
+          <Route path="/bonuses" element={<Bonuses />} />
           <Route path="/profile" element={<Profile />} />
+          
+          {/* РОУТЫ ДЛЯ ИГР */}
+          <Route path="/games/mines" element={<Mines />} />
         </Routes>
       </main>
 
-      {/* BOTTOM NAV */}
+      {/* НИЖНЯЯ НАВИГАЦИЯ */}
       <nav className="fixed bottom-0 left-0 right-0 p-4 glass flex justify-around z-50">
-        {navItems.map((item) => (
-          <button
-            key={item.path}
-            onClick={() => navigate(item.path)}
-            className={`flex flex-col items-center gap-1 transition-all duration-300 ${
-              location.pathname === item.path ? 'text-neon-purple scale-110' : 'text-gray-500'
-            }`}
-          >
-            <div className={`${location.pathname === item.path ? 'drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]' : ''}`}>
-              {item.icon}
-            </div>
-            <span className="text-[10px] font-black uppercase tracking-tighter">{item.label}</span>
-          </button>
-        ))}
+        {navItems.map((item) => {
+          const isActive = location.pathname === item.path || (item.path === '/' && location.pathname.startsWith('/games'));
+          return (
+            <button
+              key={item.path}
+              onClick={() => navigate(item.path)}
+              className={`flex flex-col items-center gap-1 transition-all duration-300 ${
+                isActive ? 'text-neon-purple scale-110' : 'text-gray-500'
+              }`}
+            >
+              <div className={`${isActive ? 'drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]' : ''}`}>
+                {item.icon}
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-tighter">{item.label}</span>
+            </button>
+          );
+        })}
       </nav>
     </div>
   );
